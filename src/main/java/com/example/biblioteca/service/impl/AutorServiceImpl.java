@@ -22,12 +22,15 @@ public class AutorServiceImpl implements AutorService {
     public List<AutorDTO> obtenerAutores() {
         return autorRepository.findAll()
                 .stream()
-                .map(this::);
+                .map(this::convertirAutor)
+                .collect(Collectors.toList());
     }
 
     @Override
     public AutorDTO obtenerAutorPorId(Long id) {
-        return null;
+        Autor autor = autorRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Autor no encontrado"));
+        return convertirAutor(autor);
     }
 
     private AutorDTO convertirAutor(Autor autor){
