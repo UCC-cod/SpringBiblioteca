@@ -27,6 +27,8 @@ public class AutorRepository {
     }
 
     public Optional<Autor> findById (Long id){
-        return autores.stream().filter(a ->a.getId().equals(id)).findFirst();
+        return autores.stream()
+                .filter(a ->a.getId().equals(id))
+                .findFirst();
     }
 }
